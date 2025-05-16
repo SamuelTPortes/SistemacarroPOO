@@ -1,25 +1,25 @@
 public class Carro {
     private boolean carState = false;
-    private int velocity, gear;
+    private int velocity = 0, gear = 0;
 
     public boolean isCarState() {
         return carState;
-    }
-
-    public int getVelocity() {
-        return velocity;
-    }
-
-    public int getGear() {
-        return gear;
     }
 
     public void setCarState(boolean carState) {
         this.carState = carState;
     }
 
+    public int getVelocity() {
+        return velocity;
+    }
+
     public void setVelocity(int velocity) {
         this.velocity = velocity;
+    }
+
+    public int getGear() {
+        return gear;
     }
 
     public void setGear(int gear) {
@@ -28,14 +28,18 @@ public class Carro {
 
     public void turnOn(){
         setCarState(true);
+        if(isCarState()) System.out.println("Carro Ligado");
     }
 
     public void turnOff(){
-        setCarState(false);
+        if(getGear() == 0 && getVelocity() == 0) setCarState(false);
+        if(!isCarState()) System.out.println("Carro Desligado");
+        else System.out.println("Carro ainda ligado, verifique sua marcha e sua velocidade");
     }
 
     public void accelerate(){
-        velocity++;
+        verifyVelocity();
+        if(velocity <=120)velocity++;
     }
 
     public void desAccelerate(){
@@ -43,14 +47,16 @@ public class Carro {
     }
 
     public void turnRight(){
-
+        if(getVelocity() > )
     }
 
     public void turnLeft(){
 
     }
 
-
+    private void verifyVelocity(){
+        if(getVelocity() <)
+    }
 }
 
 //Escreva um código onde controlamos as funções de um carro, ele deve ter as seguintes funções:
