@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.lang.Thread;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,48 +10,52 @@ public class Main {
         boolean isInputing = true;
 
         Carro fuscaAzul = new Carro();
+        System.out.println("Você está dentro do carro. Ele está desligado, marcha 0 e com velocidade 0");
         while (isInputing) {
-            System.out.println("\nOs comandos são os seguintes:\n| ligar o carro | desligar o carro| acelerar |\n" +
-                    "| diminuir velocidade | virar para esquerda | virar para direita |\n| verificar velocidade | trocar a marcha |");
+            try {
+            Thread.sleep(2000);
+            } catch (InterruptedException e){
+                e.printStackTrace();
+            }
+            System.out.println("\nOs comandos são os seguintes:\n 1.ligar carro \n 2.desligar carro \n 3.acelerar\n" +
+                    " 4.desacelerar \n 5.virar para esquerda \n 6.virar para direita \n 7.verificar velocidade \n 8. trocar marcha ");
             input = sc.next();
             input.toLowerCase();
             isInputing = false;
             switch (input) {
-                case "consultar saldo":
-                    bankAccount.checkBalance();
+                case "1":
+                    fuscaAzul.turnOn();
                     isInputing = true;
-                    oldInput = input;
                     break;
-                case "consultar cheque":
-                    bankAccount.checkSpecialCheck();
+                case "2":
+                    fuscaAzul.turnOff();
                     isInputing = true;
-                    oldInput = input;
                     break;
-                case "depositar":
-                    System.out.println("Insira o valor a depositar");
-                    float value = sc.nextFloat();
-                    bankAccount.deposit(value);
+                case "3":
+                    fuscaAzul.accelerate();
                     isInputing = true;
-                    oldInput = input;
                     break;
-                case "sacar":
-                    System.out.println("Insira o valor a sacar");
-                    float value1 = sc.nextFloat();
-                    bankAccount.withdraw(value1);
+                case "4":
+                    fuscaAzul.desAccelerate();
                     isInputing = true;
-                    oldInput = input;
                     break;
-                case "pagar boleto":
-                    System.out.println("Insira o valor do boleto");
-                    float value2 = sc.nextFloat();
-                    bankAccount.payBill(value2);
+                case "5":
+                    fuscaAzul.turnLeft();
                     isInputing = true;
-                    oldInput = input;
                     break;
-                case "verificar cheque":
-                    bankAccount.usingSpecialCheck();
+                case "6":
+                    fuscaAzul.turnRight();
                     isInputing = true;
-                    oldInput = input;
+                    break;
+                case "7":
+                    fuscaAzul.verifyVelocity();
+                    isInputing = true;
+                    break;
+                case "8":
+                    System.out.println("Gostaria de trocar para qual marcha?");
+                    int gear = sc.nextInt();
+                    fuscaAzul.changeGear(gear);
+                    isInputing = true;
                     break;
                 case "sair":
                     break;

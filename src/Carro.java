@@ -1,62 +1,133 @@
-public class Carro {
+public final class Carro {
     private boolean carState = false;
     private int velocity = 0, gear = 0;
+    private boolean canChangeGear = false;
 
-    public boolean isCarState() {
+    private boolean isCarState() {
         return carState;
     }
 
-    public void setCarState(boolean carState) {
+    private void setCarState(boolean carState) {
         this.carState = carState;
     }
 
-    public int getVelocity() {
+    private int getVelocity() {
         return velocity;
     }
 
-    public void setVelocity(int velocity) {
+    private void setVelocity(int velocity) {
         this.velocity = velocity;
     }
 
-    public int getGear() {
+    private int getGear() {
         return gear;
     }
 
-    public void setGear(int gear) {
+    private void setGear(int gear) {
         this.gear = gear;
     }
 
+
+
     public void turnOn(){
-        setCarState(true);
-        if(isCarState()) System.out.println("Carro Ligado");
+        if(!isCarState()) {
+            setCarState(true);
+            if(isCarState()) System.out.println("Carro Ligado");
+        }
     }
 
     public void turnOff(){
-        if(getGear() == 0 && getVelocity() == 0) setCarState(false);
-        if(!isCarState()) System.out.println("Carro Desligado");
-        else System.out.println("Carro ainda ligado, verifique sua marcha e sua velocidade");
+        if(isCarState()) {
+            if (getGear() == 0 && getVelocity() == 0) setCarState(false);
+            if (!isCarState()) System.out.println("Carro Desligado");
+            else System.out.println("Carro ainda ligado, verifique sua marcha e sua velocidade");
+        } else System.out.println("O carro já está desligado");
     }
 
     public void accelerate(){
-        verifyVelocity();
-        if(velocity <=120)velocity++;
+        if(isCarState()){
+        setCanChangeGear();
+        if(getVelocity() <120 && canChangeGear && getGear() !=0)velocity++;
+        else if(getGear() == 0) System.out.println("Saia do ponto morto para aumentar a velocidade");
+        canChangeGear = false;
+        System.out.println("Velocidade atual: " + getVelocity());
+        } else System.out.println("Carro desligado! Impossível acelerar");
     }
 
     public void desAccelerate(){
-        velocity--;
+        if(isCarState()) {
+            setCanChangeGear();
+            if(getVelocity() > 0 && canChangeGear) velocity--;
+            canChangeGear = false;
+            System.out.println("Velocidade atual: " + getVelocity());
+        } else System.out.println("Carro desligado! Impossível desacelerar");
     }
 
     public void turnRight(){
-        if(getVelocity() > )
+        if(isCarState()) {
+            if (getVelocity() >= 1 && getVelocity() <= 40) System.out.println("Você virou para a direita");
+            else System.out.println("Impossível virar nessa velocidade!");
+        } else System.out.println("Carro desligado! Impossível virar");
     }
 
     public void turnLeft(){
-
+        if (isCarState()){
+        if(getVelocity() >= 1 && getVelocity() <=40) System.out.println("Você virou para a esquerda");
+        else System.out.println("Impossível virar nessa velocidade!");
+        } else System.out.println("Carro desligado! Impossível virar");
     }
 
-    private void verifyVelocity(){
-        if(getVelocity() <)
+    public void verifyVelocity(){
+        System.out.println("Velocidade atual é: " + getVelocity());
     }
+
+    public void changeGear(int gear){
+        if(isCarState()) {
+            setCanChangeGear();
+            if (canChangeGear && getGear() <= 6 && getGear() >= 0 && isCarState()) {
+                setGear(gear);
+                canChangeGear = !canChangeGear;
+            }
+        } else System.out.println("Carro desligado! Impossível trocar a marcha");
+    }
+
+    private void setCanChangeGear(){
+        if(getGear() >= 0 && getGear() <=6){
+            switch (gear){
+                case 0:
+                    if(getVelocity() >= 0) {
+                        canChangeGear = true;
+                    }
+                    break;
+                case 1:
+                    if(getVelocity() >= 0 && getVelocity() <= 20) canChangeGear = true;
+                    else System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
+                    break;
+                case 2:
+                    if(getVelocity() > 20 && getVelocity() <= 40) canChangeGear = true;
+                    else System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
+                    break;
+                case 3:
+                    if(getVelocity() > 40 && getVelocity() <= 60) canChangeGear = true;
+                    else System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
+                    break;
+                case 4:
+                    if(getVelocity() > 60 && getVelocity() <= 80) canChangeGear = true;
+                    else System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
+                    break;
+                case 5:
+                    if(getVelocity() > 80 && getVelocity() <= 100) canChangeGear = true;
+                    else System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
+                    break;
+                case 6:
+                    if(getVelocity() > 100 && getVelocity() < 120) canChangeGear = true;
+                    else System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
+                    break;
+            }
+        }
+    }
+
+
 }
 
 //Escreva um código onde controlamos as funções de um carro, ele deve ter as seguintes funções:
@@ -72,7 +143,7 @@ public class Carro {
 //Quando o carro for criado ele deve começar desligado, em ponto morto e com a sua velocidade em 0
 //O carro desligado não pode realizar nenhuma função;
 //Quando o carro for acelerado ele deve incrementar 1km na sua velocidade (pode chegar no máximo a 120km);
-//Quando diminuir a velocidade do carro ele deve decrementar 1 km da sua velocidade (pode chegar no minimo a 0km);
+//Quando diminuir a velocidade do carro ele deve decrementar 1 km da sua velocidade (pode chegar no mínimo a 0km);
 //o carro deve possuir 6 marchas, não deve ser permitido pular uma marcha no carro;
 //A velocidade do carro deve respeitar os seguintes limites para cada velocidade
 //se o carro estiver na marcha 0 (ponto morto) ele não pode acelerar
