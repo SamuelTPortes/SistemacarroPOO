@@ -12,11 +12,11 @@ public class Main {
         Carro fuscaAzul = new Carro();
         System.out.println("Você está dentro do carro. Ele está desligado, marcha 0 e com velocidade 0");
         while (isInputing) {
-            try {
-            Thread.sleep(2000);
-            } catch (InterruptedException e){
-                e.printStackTrace();
-            }
+//            try {
+//            Thread.sleep(1000);
+//            } catch (InterruptedException e){
+//                e.printStackTrace();
+//            }
             System.out.println("\nOs comandos são os seguintes:\n 1.ligar carro \n 2.desligar carro \n 3.acelerar\n" +
                     " 4.desacelerar \n 5.virar para esquerda \n 6.virar para direita \n 7.verificar velocidade \n 8. trocar marcha ");
             input = sc.next();
