@@ -15,10 +15,6 @@ public final class Carro {
         return velocity;
     }
 
-    private void setVelocity(int velocity) {
-        this.velocity = velocity;
-    }
-
     private int getGear() {
         return gear;
     }
