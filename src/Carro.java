@@ -23,13 +23,11 @@ public final class Carro {
         this.gear = gear;
     }
 
-
-
     public void turnOn(){
         if(!isCarState()) {
             setCarState(true);
             if(isCarState()) System.out.println("Carro Ligado");
-        }
+        } else System.out.println("Já está ligado");
     }
 
     public void turnOff(){
@@ -43,7 +41,7 @@ public final class Carro {
     public void accelerate(){
         if(isCarState()){
         setCanChangeGear();
-        if(getVelocity() <120 && canChangeGear && getGear() !=0)velocity+=5;
+        if(getVelocity() <120 && canChangeGear && getGear() !=0)velocity+=1;
         else if(getGear() == 0) System.out.println("Saia do ponto morto para aumentar a velocidade");
         canChangeGear = false;
         System.out.println("Velocidade atual: " + getVelocity());
@@ -76,6 +74,7 @@ public final class Carro {
 
     public void verifyVelocity(){
         System.out.println("Velocidade atual é: " + getVelocity());
+        System.out.println("Marcha atual: " + getGear());
     }
 
     public void changeGear(int gear) {
@@ -85,7 +84,7 @@ public final class Carro {
                     setGear(gear);
                     canChangeGear = !canChangeGear;
                 } else System.out.println("Não é possível pular marcha");
-            }
+            } else System.out.println("Essa marcha não existe!");
         } else System.out.println("Carro desligado! Impossível trocar a marcha");
     }
 
@@ -126,7 +125,6 @@ public final class Carro {
             }
         }
     }
-
 
 }
 
