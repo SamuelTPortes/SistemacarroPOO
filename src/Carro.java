@@ -92,35 +92,44 @@ public final class Carro {
         if(getGear() >= 0 && getGear() <=6){
             switch (getGear()){
                 case 0:
-                    if(getVelocity() == 0) {
+                    if(getVelocity() == 0)
                         canChangeGear = true;
-                    }
                     break;
                 case 1:
-                    if(getVelocity() >= 1 && getVelocity() < 20)
+                    if(getVelocity() >= 1 && getVelocity() <= 20)
                         canChangeGear = true;
                     else
                         System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
                     break;
                 case 2:
-                    if(getVelocity() >= 21 && getVelocity() < 40) canChangeGear = true;
-                    else System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
+                    if(getVelocity() >= 21 && getVelocity() <= 40)
+                        canChangeGear = true;
+                    else
+                        System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
                     break;
                 case 3:
-                    if(getVelocity() >= 41 && getVelocity() < 60) canChangeGear = true;
-                    else System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
+                    if(getVelocity() >= 41 && getVelocity() <= 60)
+                        canChangeGear = true;
+                    else
+                        System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
                     break;
                 case 4:
-                    if(getVelocity() >= 61 && getVelocity() < 80) canChangeGear = true;
-                    else System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
+                    if(getVelocity() >= 61 && getVelocity() <= 80)
+                        canChangeGear = true;
+                    else
+                        System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
                     break;
                 case 5:
-                    if(getVelocity() >= 81 && getVelocity() < 100) canChangeGear = true;
-                    else System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
+                    if(getVelocity() >= 81 && getVelocity() <= 100)
+                        canChangeGear = true;
+                    else
+                        System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
                     break;
                 case 6:
-                    if(getVelocity() >= 101 && getVelocity() < 120) canChangeGear = true;
-                    else System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
+                    if(getVelocity() >= 101 && getVelocity() <= 120)
+                        canChangeGear = true;
+                    else
+                        System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
                     break;
             }
         }
