@@ -90,7 +90,7 @@ public final class Carro {
 
     private void setCanChangeGear(){
         if(getGear() >= 0 && getGear() <=6){
-            switch (gear){
+            switch (getGear()){
                 case 0:
                     if(getVelocity() == 0) {
                         canChangeGear = true;
