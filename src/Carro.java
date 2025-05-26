@@ -92,13 +92,15 @@ public final class Carro {
         if(getGear() >= 0 && getGear() <=6){
             switch (gear){
                 case 0:
-                    if(getVelocity() >= 0) {
+                    if(getVelocity() == 0) {
                         canChangeGear = true;
                     }
                     break;
                 case 1:
-                    if(getVelocity() >= 0 && getVelocity() < 20) canChangeGear = true;
-                    else System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
+                    if(getVelocity() >= 1 && getVelocity() < 20)
+                        canChangeGear = true;
+                    else
+                        System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
                     break;
                 case 2:
                     if(getVelocity() >= 21 && getVelocity() < 40) canChangeGear = true;
@@ -118,9 +120,7 @@ public final class Carro {
                     break;
                 case 6:
                     if(getVelocity() >= 101 && getVelocity() < 120) canChangeGear = true;
-                    else{
-                        System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
-                    }
+                    else System.out.println("Mude a marcha para aumentar ou diminuir a velocidade");
                     break;
             }
         }
